@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -24,6 +25,8 @@ public class User {
     private String password;
     private USER_STATUS user_status;
     private Date dob;
+    @Column(name = "phone_number")
+    private String phoneNumber;
     @Column(name = "profile_pic")
     private String profilePic;
     @Column(name = "created_at")
@@ -32,4 +35,11 @@ public class User {
     @Column(name = "updated_at")
     @LastModifiedDate
     private LocalDateTime updatedAt;
+    @ManyToMany
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
 }

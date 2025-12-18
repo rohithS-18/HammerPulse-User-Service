@@ -9,4 +9,5 @@ import java.util.ArrayList;
 public interface UserRepo {
     public ArrayList<User> findAll();
     public User save(User user);
+    public User findByUsername(String username);
 }

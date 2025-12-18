@@ -9,6 +9,7 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class UserDto {
@@ -27,10 +28,12 @@ public class UserDto {
     private String password;
     private USER_STATUS user_status;
     private Date dob;
+    private String phoneNumber;
     @Column(name = "profile_pic")
     private String profilePic;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+    private List<RoleDto> roles;
 }
