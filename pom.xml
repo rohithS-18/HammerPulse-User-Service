@@ -11,7 +11,7 @@
 	<groupId>com.hammerpulse</groupId>
 	<artifactId>user-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>user-service</name>
+	<name>user</name>
 	<description>Service to manage authentication, authorization and more. </description>
 	<url/>
 	<licenses>

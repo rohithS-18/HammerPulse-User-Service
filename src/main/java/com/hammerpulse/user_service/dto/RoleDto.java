@@ -1,12 +1,16 @@
 package com.hammerpulse.user_service.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
 public class RoleDto {
-    private int id;
+    private Integer id;
+    @NotNull(message = "Role name must be provided")
     private String name;
-    private List<UserDto> users;
+    @Size(max = 50)
+    private String description;
 }

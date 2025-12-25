@@ -1,17 +1,13 @@
 package com.hammerpulse.user_service.controller;
 
-import com.hammerpulse.user_service.dto.LoginRequestDto;
-import com.hammerpulse.user_service.dto.UserDto;
+import com.hammerpulse.user_service.dto.*;
 import com.hammerpulse.user_service.service.UserService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -37,5 +33,25 @@ public class UserController {
         return new ResponseEntity<>("success",HttpStatus.OK);
     }
 
+    @GetMapping("user/me")
+    public ResponseEntity<ProfileResponseDto> getMyProfile(){
+        ProfileResponseDto profile=userService.getprofile();
+       return ResponseEntity.ok(profile);
+    }
+
+    @PatchMapping("/user/{username}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable("username") String id, @RequestBody ProfileUpdateDto userDto){
+        return ResponseEntity.ok(userService.updateUser(id, userDto));
+    }
+
+    @PatchMapping("/user/update-role")
+    public ResponseEntity<?> updateUserRole(@RequestBody UpdateRoleRequestDto updateRoleRequestDto){
+        return ResponseEntity.ok(userService.addRoleToUser(updateRoleRequestDto));
+    }
+
+    @GetMapping("/user/roles/{id}")
+    public ResponseEntity<AllRolesResponse> getRolesOfUser(@PathVariable("id") int id){
+        return ResponseEntity.ok(userService.getRolesOfUser(id));
+    }
 
 }
